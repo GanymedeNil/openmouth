@@ -1,0 +1,66 @@
+name: 打分不准
+description: 读对了却被标错、读错了却没发现，或者分数、节奏语调的提示明显不对
+labels: ["打分"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        打分是自动的，会有一定误差（橙色「有口音」更像是「可以更地道」的提示）。如果某一句明显不对，欢迎反馈，能帮助改进打分。
+  - type: input
+    id: version
+    attributes:
+      label: OpenMouth 版本
+      placeholder: 例如 0.3.0
+    validations:
+      required: true
+  - type: input
+    id: sentence
+    attributes:
+      label: 哪一句
+      description: 把句子原文贴上来
+      placeholder: "I think this is the third Thursday of the month."
+    validations:
+      required: true
+  - type: dropdown
+    id: kind
+    attributes:
+      label: 哪种不准
+      options:
+        - 读对了，却被标成读错 / 漏读
+        - 读对了，却被标成有口音
+        - 读错了，却没有被发现
+        - 句子分数整体偏高
+        - 句子分数整体偏低
+        - 节奏、语调或重音的提示不对
+        - 其他
+    validations:
+      required: true
+  - type: textarea
+    id: detail
+    attributes:
+      label: 具体是哪个词、哪个音
+      description: 例如「think 的 /θ/ 我读对了，但被标成了 /s/」
+    validations:
+      required: true
+  - type: textarea
+    id: screenshot
+    attributes:
+      label: 结果页截图
+      description: 按 ⇧⌘4 截图，直接拖进这里
+  - type: textarea
+    id: recording
+    attributes:
+      label: 录音（可选）
+      description: |
+        有录音最容易查清楚。录音在 ~/Library/Application Support/OpenMouth/recordings（在访达里按 ⇧⌘G 前往），找到对应时间的 .wav，压缩成 .zip 后拖进这里。
+        注意：放在这里的录音所有人都能听到，介意的话可以不传。
+  - type: dropdown
+    id: speaker
+    attributes:
+      label: 读的人
+      description: 帮助判断误差来源
+      options:
+        - 成年人，中文母语
+        - 儿童，中文母语
+        - 英语母语者
+        - 其他

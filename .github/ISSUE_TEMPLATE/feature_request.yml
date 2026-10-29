@@ -1,0 +1,26 @@
+name: 功能建议
+description: 想要的新功能，或者现有功能可以怎样做得更好
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: 你想解决什么问题
+      description: 练习时遇到了什么不方便的地方
+      placeholder: 例如：我想只练一课里自己读错过的句子……
+    validations:
+      required: true
+  - type: textarea
+    id: idea
+    attributes:
+      label: 你希望怎样做
+      description: 可以描述界面、操作步骤，或者参考别的软件
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: 现在是怎么凑合的
+  - type: textarea
+    id: extra
+    attributes:
+      label: 其他补充
+      description: 截图、示意图都可以拖进这里

@@ -1,0 +1,77 @@
+name: 问题反馈
+description: App 出错、闪退、卡住、按钮没反应，或者装不上、打不开
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        谢谢反馈！先在 [Issues](https://github.com/GanymedeNil/openmouth/issues?q=is%3Aissue) 里搜一下有没有人提过同样的问题。打分不准请用「打分不准」模板。
+  - type: input
+    id: version
+    attributes:
+      label: OpenMouth 版本
+      description: 菜单「OpenMouth › 关于 OpenMouth 跟读教练」里可以看到
+      placeholder: 例如 0.3.0
+    validations:
+      required: true
+  - type: input
+    id: macos
+    attributes:
+      label: macOS 版本
+      description: 苹果菜单 › 关于本机
+      placeholder: 例如 macOS 15.3
+    validations:
+      required: true
+  - type: dropdown
+    id: chip
+    attributes:
+      label: Mac 的芯片
+      options:
+        - M1
+        - M2
+        - M3
+        - M4
+        - 更新的 M 系列
+        - Intel（OpenMouth 不支持 Intel 芯片）
+    validations:
+      required: true
+  - type: dropdown
+    id: memory
+    attributes:
+      label: 内存
+      options:
+        - 8 GB
+        - 16 GB
+        - 24 GB 或更多
+        - 不清楚
+  - type: textarea
+    id: what
+    attributes:
+      label: 发生了什么
+      description: 越具体越好；有提示文字的话请原样贴上
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: 怎样能重现
+      placeholder: |
+        1. 打开某一课
+        2. 点……
+        3. 出现……
+  - type: textarea
+    id: expected
+    attributes:
+      label: 你原本期望的是
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: 截图
+      description: 按 ⇧⌘4 截图，直接拖进这里
+  - type: checkboxes
+    id: official
+    attributes:
+      label: 确认
+      options:
+        - label: 我是从这个仓库的 Releases 下载的，App 窗口底部没有「这不是官方发布的 OpenMouth」提示
+          required: true
