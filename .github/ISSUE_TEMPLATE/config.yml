@@ -1,5 +1,8 @@
 blank_issues_enabled: false
 contact_links:
+  - name: 官方网站
+    url: https://openmouth.anai.dev
+    about: 功能介绍、下载和使用说明
   - name: 下载最新版
     url: https://github.com/GanymedeNil/openmouth/releases/latest
     about: 先确认用的是最新的官方版本，很多问题已经修好了
