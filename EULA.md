@@ -1,7 +1,7 @@
 # OpenMouth 跟读教练 软件许可协议
 
 
-版权所有 © 2026 Hongyang Jin。保留所有权利。
+版权所有 © 2026 GanymedeNil。保留所有权利。
 
 使用 OpenMouth 跟读教练（以下简称"本软件"）即表示你同意本协议。
 
@@ -9,7 +9,7 @@
    你可以免费在自己的 Mac 上安装和使用本软件，用于个人学习、教学等用途。本授权是非独占、不可转让的。
 
 2. 可以分享，不可以卖
-   · 欢迎把官网（https://openmouth.anai.dev）或官方下载地址（https://github.com/GanymedeNil/openmouth/releases）分享给别人。
+   · 欢迎把官网（https://www.ganymedenil.com/openmouth/）或官方下载地址（https://github.com/GanymedeNil/openmouth/releases）分享给别人。
    · 你也可以把官方安装包原样、免费地转给别人。
    · 不得出售、出租本软件，不得以本软件或它的安装、激活、"破解"等名义收取任何费用。
    · 不得修改本软件、去掉或更改其中的作者和版权信息、重新打包后发布。

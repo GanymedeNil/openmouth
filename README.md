@@ -4,7 +4,7 @@
 
 *A free English pronunciation (shadowing) coach for Mandarin speakers on macOS. It scores every phoneme on device and explains in Chinese what went wrong and how to fix it, with articulation diagrams and intonation feedback.*
 
-**[⬇︎ 免费下载](https://github.com/GanymedeNil/openmouth/releases/latest)** · **[官网](https://openmouth.anai.dev)** · OpenMouth 是免费软件，禁止出售；如果你是花钱买到的，请找卖家退款。
+**[⬇︎ 免费下载](https://github.com/GanymedeNil/openmouth/releases/latest)** · **[官网](https://www.ganymedenil.com/openmouth/)** · OpenMouth 是免费软件，禁止出售；如果你是花钱买到的，请找卖家退款。
 
 ![评测结果](docs/images/result.png)
 
@@ -35,7 +35,7 @@
 - 第一次打开要联网下载评分模型，约 3.6 GB（支持断点续传），请留出 5 GB 以上的空间；
 - 评分时 App 约占 4.5 GB 内存，建议 16 GB 内存。
 
-**怎么确认是官方版本**：官网是 [openmouth.anai.dev](https://openmouth.anai.dev)，安装包只从这里的 Releases 发布。App 每次启动都会检查自己的签名，被改过或重新打包过的副本，窗口底部会一直显示「这不是官方发布的 OpenMouth」。菜单「OpenMouth › 关于 OpenMouth 跟读教练」里有作者和官方下载地址。
+**怎么确认是官方版本**：官网是 [www.ganymedenil.com/openmouth](https://www.ganymedenil.com/openmouth/)，安装包只从这里的 Releases 发布。App 每次启动都会检查自己的签名，被改过或重新打包过的副本，窗口底部会一直显示「这不是官方发布的 OpenMouth」。菜单「OpenMouth › 关于 OpenMouth 跟读教练」里有作者和官方下载地址。
 
 ## 快速上手
 
@@ -78,7 +78,7 @@ App 不带任何课程内容，请导入你有权使用的材料。
 
 ## 许可
 
-- OpenMouth 是闭源的免费软件，版权归 Hongyang Jin 所有，按 [软件许可协议](EULA.md) 使用：可以免费使用和原样分享，禁止出售、修改后再发布。
+- OpenMouth 是闭源的免费软件，版权归 GanymedeNil 所有，按 [软件许可协议](EULA.md) 使用：可以免费使用和原样分享，禁止出售、修改后再发布。
 - App 附带的两个小程序是开源的，源代码就在这个仓库的 [components](components/) 里：
   - `openmouth-g2p`：调用 espeak-ng 把英文转成音标，GPL-3.0-or-later；
   - `openmouth-tts`：生成在线合成示范音，移植自 edge-tts，LGPL-3.0-or-later。

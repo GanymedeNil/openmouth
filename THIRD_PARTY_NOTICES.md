@@ -1,6 +1,6 @@
 # 第三方软件、模型和数据
 
-OpenMouth 本身是闭源的免费软件（见 [软件许可协议](EULA.md)），版权归 Hongyang Jin 所有。下面这些是开源的，或者不是 OpenMouth 写的，各自有自己的许可。
+OpenMouth 本身是闭源的免费软件（见 [软件许可协议](EULA.md)），版权归 GanymedeNil 所有。下面这些是开源的，或者不是 OpenMouth 写的，各自有自己的许可。
 
 ## 随 App 一起分发的开源程序
 

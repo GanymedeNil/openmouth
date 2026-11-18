@@ -9,7 +9,7 @@
 // Writes the MP3 and exits 0. Otherwise exits 1 with one line on stderr: "service: ..." when the service
 // answered without audio, "network: ..." when it couldn't be reached.
 //
-// Copyright (C) 2026 Hongyang Jin. EdgeTTS.swift: ported from edge-tts 7.3.1 (https://github.com/rany2/edge-tts),
+// Copyright (C) 2026 GanymedeNil. EdgeTTS.swift: ported from edge-tts 7.3.1 (https://github.com/rany2/edge-tts),
 // Copyright the edge-tts authors.
 //
 // This program is free software: you can redistribute it and/or modify it under the terms of the GNU
