@@ -1,0 +1,580 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RDGLC2P9V6"></script>
+<script src="assets/gtag.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>OpenMouth 跟读教练</title>
+<meta name="description" content="Mac 上的英语跟读教练：听一句、跟着读，马上知道哪个词、哪个音没读对，用中文讲清楚怎么改。打分在你的 Mac 上完成，录音不上传。免费下载。">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f3f3f8" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#14141b" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website">
+<meta property="og:title" content="OpenMouth 跟读教练">
+<meta property="og:description" content="Mac 上的英语跟读教练：精确到每一个音的打分、中文讲解、口型示意、节奏和语调对比。免费。">
+<link rel="icon" href="favicon.png" type="image/png">
+<link rel="stylesheet" href="assets/site.css">
+<script src="assets/theme.js"></script>
+<script src="assets/mouth.js" defer></script>
+<script src="assets/site.js" defer></script>
+</head>
+<body>
+
+<!-- icons: drawn for this page -->
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21M8.5 21h7"/></symbol>
+  <symbol id="i-speaker" viewBox="0 0 24 24"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z"/><path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/></symbol>
+  <symbol id="i-stop" viewBox="0 0 24 24"><rect x="6.5" y="6.5" width="11" height="11" rx="2.2" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.8v12.4a.8.8 0 0 0 1.2.7l9.6-6.2a.8.8 0 0 0 0-1.4L9.2 5.1A.8.8 0 0 0 8 5.8z" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-pause" viewBox="0 0 24 24"><rect x="7" y="5.5" width="3.5" height="13" rx="1" fill="currentColor" stroke="none"/><rect x="13.5" y="5.5" width="3.5" height="13" rx="1" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-compare" viewBox="0 0 24 24"><path d="M4 8h14.5L15 4.5M20 16H5.5L9 19.5"/></symbol>
+  <symbol id="i-playback" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M10.2 8.8v6.4l5-3.2z" fill="currentColor"/></symbol>
+  <symbol id="i-repeat" viewBox="0 0 24 24"><path d="M4.5 11.5V10A3 3 0 0 1 7.5 7H19l-3-3M19.5 12.5V14a3 3 0 0 1-3 3H5l3 3"/></symbol>
+  <symbol id="i-sliders" viewBox="0 0 24 24"><path d="M4 7.5h8.5M17.5 7.5H20M4 16.5h2.5M11.5 16.5H20"/><circle cx="15" cy="7.5" r="2.3"/><circle cx="9" cy="16.5" r="2.3"/></symbol>
+  <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 4v11M7 10.5l5 5 5-5M5 19.5h14"/></symbol>
+  <symbol id="i-sparkles" viewBox="0 0 24 24"><path d="M11 3.5l1.9 5 5 1.9-5 1.9-1.9 5-1.9-5-5-1.9 5-1.9z"/><path d="M18.5 14.5l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8z"/></symbol>
+  <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.8"/><circle cx="12" cy="12" r="1.4" fill="currentColor"/></symbol>
+  <symbol id="i-bulb" viewBox="0 0 24 24"><path d="M9.3 17.5h5.4M10.2 20.5h3.6M12 3.5a6 6 0 0 0-3.6 10.8c.7.6 1 1.3 1 2.2h5.2c0-.9.3-1.6 1-2.2A6 6 0 0 0 12 3.5z"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="10.5" width="14" height="10" rx="2.5"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/></symbol>
+  <symbol id="i-folder" viewBox="0 0 24 24"><path d="M3.5 7.5a2 2 0 0 1 2-2h4l2 2h7a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-13a2 2 0 0 1-2-2z"/></symbol>
+  <symbol id="i-doc" viewBox="0 0 24 24"><path d="M7 3.5h7l4.5 4.5v12.5H7z"/><path d="M14 3.5V8h4.5M9.5 12.5h6M9.5 16h6"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+  <symbol id="i-seal" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M8.5 12.2l2.4 2.4 4.6-4.8"/></symbol>
+  <symbol id="i-down" viewBox="0 0 24 24"><path d="M6 9.5l6 6 6-6"/></symbol>
+  <symbol id="i-right" viewBox="0 0 24 24"><path d="M9.5 6l6 6-6 6"/></symbol>
+  <symbol id="i-lips" viewBox="0 0 24 24"><path d="M2.5 12c2.2-3.4 4.6-5.2 6.6-5.2 1.2 0 2.1.8 2.9.8s1.7-.8 2.9-.8c2 0 4.4 1.8 6.6 5.2-2.6 3.4-5.6 5.3-9.5 5.3S5.1 15.4 2.5 12z"/><path d="M3.5 12h17"/></symbol>
+  <symbol id="i-wave" viewBox="0 0 24 24"><path d="M3 12h1M6.5 8.5v7M10 4.5v15M13.5 7v10M17 9.5v5M20.5 12h.5"/></symbol>
+  <symbol id="i-split" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="10" rx="2"/><path d="M9 7v10M15 7v10"/></symbol>
+  <symbol id="i-bubble" viewBox="0 0 24 24"><path d="M5 5.5h14a1.5 1.5 0 0 1 1.5 1.5v8.5A1.5 1.5 0 0 1 19 17h-8.5L6 20.5V17H5a1.5 1.5 0 0 1-1.5-1.5V7A1.5 1.5 0 0 1 5 5.5z"/></symbol>
+  <symbol id="i-send" viewBox="0 0 24 24"><path d="M12 19V5.5M6.5 11L12 5.5l5.5 5.5"/></symbol>
+  <symbol id="i-laptop" viewBox="0 0 24 24"><rect x="4.5" y="5" width="15" height="10.5" rx="1.5"/><path d="M2.5 19h19"/></symbol>
+  <symbol id="i-swap" viewBox="0 0 24 24"><path d="M4 8.5h14.5L15 5M20 15.5H5.5L9 19"/></symbol>
+  <symbol id="i-gauge" viewBox="0 0 24 24"><path d="M4 17a8 8 0 1 1 16 0"/><path d="M12 17l4-5.5"/></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4H11v16H5.5A1.5 1.5 0 0 1 4 18.5zM20 5.5A1.5 1.5 0 0 0 18.5 4H13v16h5.5a1.5 1.5 0 0 0 1.5-1.5z"/></symbol>
+  <symbol id="i-cpu" viewBox="0 0 24 24"><rect x="6.5" y="6.5" width="11" height="11" rx="2"/><path d="M9.5 3.5v3M14.5 3.5v3M9.5 17.5v3M14.5 17.5v3M3.5 9.5h3M3.5 14.5h3M17.5 9.5h3M17.5 14.5h3"/></symbol>
+  <symbol id="i-disk" viewBox="0 0 24 24"><ellipse cx="12" cy="6.5" rx="7.5" ry="3"/><path d="M4.5 6.5v11c0 1.7 3.4 3 7.5 3s7.5-1.3 7.5-3v-11M4.5 12c0 1.7 3.4 3 7.5 3s7.5-1.3 7.5-3"/></symbol>
+  <symbol id="i-memory" viewBox="0 0 24 24"><rect x="3.5" y="7" width="17" height="10" rx="1.5"/><path d="M7 10.5v3M10.5 10.5v3M14 10.5v3M17.5 10.5v3M7 17v2.5M17 17v2.5"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2.8v2M12 19.2v2M5.5 5.5l1.4 1.4M17.1 17.1l1.4 1.4M2.8 12h2M19.2 12h2M5.5 18.5l1.4-1.4M17.1 6.9l1.4-1.4"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24"><path d="M19.5 14.6A7.8 7.8 0 0 1 9.4 4.5a7.8 7.8 0 1 0 10.1 10.1z"/></symbol>
+  <symbol id="i-cloud-off" viewBox="0 0 24 24"><path d="M7.5 18.5h9.8a3.8 3.8 0 0 0 .8-7.5 5.8 5.8 0 0 0-10.9-1.6A4.6 4.6 0 0 0 7.5 18.5z"/><path d="M4 4l16 16"/></symbol>
+  <symbol id="i-issue" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5v5.5"/><circle cx="12" cy="16.3" r=".6" fill="currentColor"/></symbol>
+</svg>
+
+<a class="skip" href="#score">跳到功能介绍</a>
+<div class="progress" aria-hidden="true"><i></i></div>
+
+<header class="topbar">
+  <div class="topbar__inner">
+    <a class="brand" href="#top" aria-label="OpenMouth 首页">
+      <img src="icon.png" width="28" height="28" alt="">
+      <span>OpenMouth</span>
+    </a>
+    <nav class="topbar__links" aria-label="页面导航">
+      <a href="#score">评测</a>
+      <a href="#mouth">口型</a>
+      <a href="#review">复习</a>
+      <a href="#assistant">AI 助手</a>
+      <a href="#accuracy">准确度</a>
+    </nav>
+    <button class="icon-btn theme-toggle" type="button" aria-label="切换浅色或深色">
+      <svg class="i i-for-light"><use href="#i-moon"/></svg>
+      <svg class="i i-for-dark"><use href="#i-sun"/></svg>
+    </button>
+    <a class="btn btn--primary btn--small" href="https://github.com/GanymedeNil/openmouth/releases">
+      <svg class="i"><use href="#i-download"/></svg>免费下载
+    </a>
+  </div>
+</header>
+
+<nav class="dots" aria-label="功能目录">
+  <a href="#top" data-label="开始"></a>
+  <a href="#score" data-label="跟读评测"></a>
+  <a href="#coach" data-label="中文讲解"></a>
+  <a href="#mouth" data-label="口型示意"></a>
+  <a href="#rhythm" data-label="节奏和语调"></a>
+  <a href="#pieces" data-label="长句分段"></a>
+  <a href="#auto" data-label="自动跟读"></a>
+  <a href="#review" data-label="弱项复习"></a>
+  <a href="#assistant" data-label="AI 助手"></a>
+  <a href="#yours" data-label="课程和数据"></a>
+  <a href="#accuracy" data-label="准确度"></a>
+  <a href="#download" data-label="下载"></a>
+</nav>
+
+<main>
+
+<!-- 1 · hero -->
+<section class="hero screen" id="top">
+  <div class="hero__text">
+    <p class="eyebrow reveal">给中文母语者的英语跟读教练 · Mac</p>
+    <h1 class="reveal" style="--d:1">跟读英语，<br>精确到每一个音</h1>
+    <p class="lead reveal" style="--d:2">听一句标准发音，跟着读，OpenMouth 马上告诉你哪个词、哪个音没读对，再用中文讲清楚该怎么改。打分全在你自己的 Mac 上完成，录音不上传。</p>
+    <div class="hero__cta reveal" style="--d:3">
+      <a class="btn btn--primary btn--large" href="https://github.com/GanymedeNil/openmouth/releases">
+        <svg class="i"><use href="#i-download"/></svg>免费下载
+      </a>
+      <a class="btn btn--ghost btn--large" href="#score">看看怎么练<svg class="i"><use href="#i-down"/></svg></a>
+    </div>
+    <p class="hero__meta reveal" style="--d:4">免费 · Apple 芯片的 Mac · macOS 14 或更新</p>
+  </div>
+
+  <div class="window hero-window reveal" style="--d:3" aria-label="OpenMouth 界面示意">
+    <div class="window__bar"><span class="lights"><i></i><i></i><i></i></span><span class="window__title">OpenMouth</span></div>
+    <div class="hw">
+      <aside class="hw-side" aria-hidden="true">
+        <div class="side-item side-item--review"><svg class="i"><use href="#i-target"/></svg>弱项复习<span class="count">11</span></div>
+        <div class="side-head">内置练习</div>
+        <div class="side-item is-active"><b>th 音 /θ/ /ð/</b><small>已练 1/3 句 · 平均 82</small></div>
+        <div class="side-item"><b>v 和 w</b><small>2 句</small></div>
+        <div class="side-item"><b>长短元音 /ɪ/ /iː/</b><small>3 句</small></div>
+        <div class="side-item"><b>/æ/ 和 /ɛ/</b><small>2 句</small></div>
+        <div class="side-item"><b>l、n、r</b><small>2 句</small></div>
+        <div class="side-item"><b>词尾辅音</b><small>2 句</small></div>
+        <div class="side-item"><b>日常句子</b><small>3 句</small></div>
+      </aside>
+      <div class="hw-main">
+        <div class="pane-head"><div><b>th 音 /θ/ /ð/</b><small>内置练习 · 第 1/3 句</small></div></div>
+        <div class="card sentence-card"><p class="sentence">I think this is the third Thursday of the month.</p></div>
+        <div class="metrics metrics--compact" data-take="1"></div>
+        <div class="card words-card"><div class="words" data-words="hero"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 2 · scoring -->
+<section class="feature screen" id="score">
+  <div class="feature__inner">
+    <div class="feature__text">
+      <p class="eyebrow reveal"><svg class="i"><use href="#i-mic"/></svg>跟读评测</p>
+      <h2 class="reveal" style="--d:1">按空格，读一句，<br>马上出分</h2>
+      <p class="reveal" style="--d:2">读完几秒就出结果。每个词下面两行音标：上面是标准读音，下面是你读出来的。<span class="ink-red">读错</span>标红，<span class="ink-orange">有口音</span>标橙，漏读的音用 <b>_</b> 标出来。</p>
+      <ul class="points reveal" style="--d:3">
+        <li><b>发音</b>：每个音准不准，90 分以上是优秀</li>
+        <li><b>流利度</b>：语速合不合适，有没有卡顿和多余的停顿</li>
+        <li><b>语调相似度</b>：声音的高低起伏和示范像不像</li>
+      </ul>
+      <p class="try reveal" style="--d:4"><svg class="i"><use href="#i-sparkles"/></svg>试一试：点蓝色按钮或按空格「录音」，再点一个词，看看问题出在哪。网页里是演示，不会打开麦克风。</p>
+    </div>
+
+    <div class="feature__demo reveal" style="--d:2">
+      <div class="window" id="practice">
+        <div class="window__bar"><span class="lights"><i></i><i></i><i></i></span><span class="window__title">th 音 /θ/ /ð/ · 第 1/3 句</span></div>
+        <div class="pane">
+          <div class="card sentence-card"><p class="sentence">I think this is the third Thursday of the month.</p></div>
+          <div class="card controls">
+            <div class="controls__side">
+              <button class="mac-btn" type="button" data-say="I think this is the third Thursday of the month."><svg class="i"><use href="#i-speaker"/></svg>听示范</button>
+              <button class="mac-btn" type="button" data-slow aria-pressed="false">0.7×</button>
+            </div>
+            <div class="controls__mid">
+              <button class="rec-btn" type="button" aria-label="开始录音"><svg class="i i-mic"><use href="#i-mic"/></svg><svg class="i i-stop"><use href="#i-stop"/></svg><span class="spinner"></span></button>
+              <span class="rec-label" aria-live="polite">录音 · 空格</span>
+            </div>
+            <div class="controls__side controls__side--end">
+              <button class="mac-btn" type="button" data-compare disabled><svg class="i"><use href="#i-compare"/></svg>对比</button>
+              <button class="mac-btn hide-narrow" type="button" data-playback disabled><svg class="i"><use href="#i-playback"/></svg>回放</button>
+            </div>
+            <div class="meter" aria-hidden="true"></div>
+          </div>
+
+          <div class="result" aria-live="polite"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3 · coaching -->
+<section class="feature feature--flip screen alt" id="coach">
+  <div class="feature__inner">
+    <div class="feature__text">
+      <p class="eyebrow reveal"><svg class="i"><use href="#i-bubble"/></svg>中文讲解</p>
+      <h2 class="reveal" style="--d:1">不只告诉你错了，<br>还告诉你怎么改</h2>
+      <p class="reveal" style="--d:2">讲解专门针对中文母语者最常见的问题：舌头放哪、嘴唇怎么动、声带要不要振动，一条条写清楚；最后列出值得单独慢读几遍的词。老是错的音，还会提醒你去「弱项复习」专门练。</p>
+      <div class="pitfalls reveal" style="--d:3">
+        <p class="pitfalls__title">中文母语者常见的几个坑，点一个看看：</p>
+        <div class="chips" role="tablist" aria-label="常见问题"></div>
+        <div class="pitfall card" aria-live="polite"></div>
+      </div>
+    </div>
+
+    <div class="feature__demo reveal" style="--d:2">
+      <div class="window">
+        <div class="window__bar"><span class="lights"><i></i><i></i><i></i></span><span class="window__title">评测结果</span></div>
+        <div class="pane">
+          <div class="banner"><svg class="i"><use href="#i-target"/></svg><span>这几个音是你的老问题：/θ/ 最近 12 次对了 42%，/z/ 最近 9 次对了 78%。可以到「弱项复习」里专门练</span></div>
+          <div class="tabs" role="tablist" aria-label="结果分页">
+            <button type="button" role="tab" aria-selected="true" data-tab="coach">讲解</button>
+            <a role="tab" href="#mouth">口型</a>
+            <a role="tab" href="#rhythm">节奏</a>
+            <button type="button" role="tab" aria-selected="false" data-tab="issues">问题</button>
+          </div>
+          <div class="card coach" data-panel="coach"></div>
+          <div class="card issues" data-panel="issues" hidden></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4 · articulation -->
+<section class="feature screen" id="mouth">
+  <div class="feature__inner">
+    <div class="feature__text">
+      <p class="eyebrow reveal"><svg class="i"><use href="#i-lips"/></svg>口型示意</p>
+      <h2 class="reveal" style="--d:1">看得见的<br>舌头和嘴唇</h2>
+      <p class="reveal" style="--d:2">侧面剖视图演示每个词怎么发音：舌头、嘴唇、牙齿、软腭和声带怎么配合。<span class="ink-air">蓝色虚线</span>是气流，声带发黄表示要振动，圈出来的是要接触或靠近的地方。</p>
+      <p class="reveal" style="--d:3">打分之后，读错的音会并排显示「标准」和「你接近」的口型，差在哪一眼就能看出来。</p>
+      <p class="try reveal" style="--d:4"><svg class="i"><use href="#i-sparkles"/></svg>点一个词看口型动画，点音标停在那个音上。</p>
+      <p class="fine reveal" style="--d:4">口型图是示意，帮你理解发音位置，不是对你嘴型的测量。</p>
+    </div>
+
+    <div class="feature__demo reveal" style="--d:2">
+      <div class="window">
+        <div class="window__bar"><span class="lights"><i></i><i></i><i></i></span><span class="window__title">口型示意</span></div>
+        <div class="pane">
+          <div class="card guide">
+            <div class="card-head"><svg class="i"><use href="#i-lips"/></svg><b>口型示意</b><span class="spacer"></span><button class="mac-btn" type="button" data-replay><svg class="i"><use href="#i-repeat"/></svg>重播</button></div>
+            <div class="chips chips--words" data-words-guide role="tablist" aria-label="单词"></div>
+            <div class="guide__body">
+              <div class="guide__figure"><svg class="mouth mouth--big" viewBox="0 0 300 300" role="img" aria-label="口腔侧面示意图"></svg></div>
+              <div class="guide__side">
+                <div class="chips chips--ipa" data-phones role="tablist" aria-label="音标"></div>
+                <p class="guide__tip" aria-live="polite"></p>
+                <div class="compare">
+                  <p class="compare__title"></p>
+                  <div class="compare__pair">
+                    <figure><svg class="mouth mouth--mini" viewBox="0 0 300 300" aria-hidden="true"></svg><figcaption data-std></figcaption></figure>
+                    <figure><svg class="mouth mouth--mini" viewBox="0 0 300 300" aria-hidden="true"></svg><figcaption data-you></figcaption></figure>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5 · rhythm and intonation -->
+<section class="feature feature--flip screen alt" id="rhythm">
+  <div class="feature__inner">
+    <div class="feature__text">
+      <p class="eyebrow reveal"><svg class="i"><use href="#i-wave"/></svg>节奏和语调</p>
+      <h2 class="reveal" style="--d:1">像不像，<br>看两条曲线就知道</h2>
+      <p class="reveal" style="--d:2">说英语不只要每个音准，还有语速、停顿、重音和声音的高低起伏。灰色是示范，紫色是你，按词对齐：两条越贴近，语调越像。</p>
+      <p class="reveal" style="--d:3">曲线下面直接告诉你主要差在哪：读得太慢、不该停的地方停了、重音放错了、句尾该降没降、语调太平。</p>
+      <p class="try reveal" style="--d:4"><svg class="i"><use href="#i-sparkles"/></svg>切换「第 1 遍 / 第 2 遍」，看看照着提示改过之后，曲线怎么靠拢。</p>
+    </div>
+
+    <div class="feature__demo reveal" style="--d:2">
+      <div class="window">
+        <div class="window__bar"><span class="lights"><i></i><i></i><i></i></span><span class="window__title">节奏和语调</span></div>
+        <div class="pane">
+          <div class="card rhythm">
+            <div class="card-head"><svg class="i"><use href="#i-wave"/></svg><b>节奏和语调</b><span class="spacer"></span><span class="rhythm__stats"></span></div>
+            <div class="seg" role="radiogroup" aria-label="选择第几遍">
+              <button type="button" role="radio" aria-checked="true" data-take="1">第 1 遍</button>
+              <button type="button" role="radio" aria-checked="false" data-take="2">第 2 遍</button>
+            </div>
+            <div class="rhythm__chart"><svg class="pitch" viewBox="0 0 600 220" role="img" aria-label="示范和你的音高曲线"></svg></div>
+            <div class="legend"><span class="legend__ref">示范</span><span class="legend__you">你</span></div>
+            <ul class="tips" aria-live="polite"></ul>
+            <p class="fine">两条曲线越贴近，语调越像。这些是自动测出来的，当作参考方向就好。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6 · long lines in pieces -->
+<section class="feature screen" id="pieces">
+  <div class="feature__inner">
+    <div class="feature__text">
+      <p class="eyebrow reveal"><svg class="i"><use href="#i-split"/></svg>长句分段</p>
+      <h2 class="reveal" style="--d:1">一口气跟不下来？<br>先一段一段练</h2>
+      <p class="reveal" style="--d:2">太长的句子，或者一行里有好几句的对话，会自动按句号、标点和意群切成几段。点一段，就只听、只读、只评这一段；练熟了，再点「整句」连起来读。</p>
+      <ul class="points reveal" style="--d:3">
+        <li>每一段单独打分，原声也只放这一段</li>
+        <li>自动跟读时按「第 1 段 → 第 2 段 → … → 整句」往下练</li>
+        <li>只有读整句才记入这一句的成绩</li>
+      </ul>
+    </div>
+
+    <div class="feature__demo reveal" style="--d:2">
+      <div class="window" id="pieces-demo">
+        <div class="window__bar"><span class="lights"><i></i><i></i><i></i></span><span class="window__title">长句分段</span></div>
+        <div class="pane">
+          <div class="pane-head"><div><b>日常对话</b><small>导入的课程 · 第 3 句</small></div></div>
+          <div class="card sentence-card"><p class="sentence sentence--pieces"></p><p class="translation">很高兴认识你。请给我一杯咖啡。你能告诉我怎么去车站吗？</p></div>
+          <div class="card pieces">
+            <div class="pieces__list" role="tablist" aria-label="分段"></div>
+            <div class="pieces__bar">
+              <button class="mac-btn" type="button" data-say-piece><svg class="i"><use href="#i-speaker"/></svg>听这一段</button>
+              <button class="rec-btn rec-btn--small" type="button" aria-label="录这一段"><svg class="i i-mic"><use href="#i-mic"/></svg><svg class="i i-stop"><use href="#i-stop"/></svg><span class="spinner"></span></button>
+              <span class="pieces__status" aria-live="polite"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 7 · auto shadowing -->
+<section class="feature feature--flip screen alt" id="auto">
+  <div class="feature__inner">
+    <div class="feature__text">
+      <p class="eyebrow reveal"><svg class="i"><use href="#i-repeat"/></svg>自动跟读</p>
+      <h2 class="reveal" style="--d:1">不用按键，<br>一句接一句练完一课</h2>
+      <p class="reveal" style="--d:2">点「自动跟读」：先放示范，听到「嘀」一声开始跟读；读完稍停一下，App 自动结束录音并打分，几秒后进入下一句。整课读完会停下来。</p>
+      <ul class="points reveal" style="--d:3">
+        <li>想暂停就按空格</li>
+        <li>长句会先一段一段练，再读整句</li>
+        <li>在「弱项复习」里用，就按复习列表一句句往下练</li>
+      </ul>
+    </div>
+
+    <div class="feature__demo reveal" style="--d:2">
+      <div class="window" id="auto-demo">
+        <div class="window__bar"><span class="lights"><i></i><i></i><i></i></span><span class="window__title">自动跟读</span></div>
+        <div class="pane auto">
+          <ol class="auto__list"></ol>
+          <div class="auto__stage">
+            <ol class="flow" aria-label="自动跟读的步骤">
+              <li data-step="listen"><svg class="i"><use href="#i-speaker"/></svg>听示范</li>
+              <li data-step="read"><svg class="i"><use href="#i-mic"/></svg>跟读</li>
+              <li data-step="score"><svg class="i"><use href="#i-seal"/></svg>评测</li>
+              <li data-step="next"><svg class="i"><use href="#i-right"/></svg>下一句</li>
+            </ol>
+            <div class="card auto__card">
+              <p class="auto__sentence"></p>
+              <div class="auto__visual">
+                <div class="auto__bar"><i></i></div>
+                <div class="meter meter--auto" aria-hidden="true"></div>
+                <span class="auto__beep">嘀</span>
+              </div>
+              <p class="auto__status" aria-live="polite"></p>
+            </div>
+            <div class="auto__controls">
+              <button class="mac-btn mac-btn--accent" type="button" data-auto-toggle><svg class="i i-pause-ic"><use href="#i-pause"/></svg><svg class="i i-play-ic"><use href="#i-play"/></svg><span>暂停</span></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 8 · weak spots -->
+<section class="feature screen" id="review">
+  <div class="feature__inner">
+    <div class="feature__text">
+      <p class="eyebrow reveal"><svg class="i"><use href="#i-target"/></svg>弱项复习</p>
+      <h2 class="reveal" style="--d:1">你最常错的音，<br>App 都记着</h2>
+      <p class="reveal" style="--d:2">每次跟读读错的音都会记下来。「弱项复习」把你最近最容易错的音排在最前面：对了百分之多少、常被读成什么。</p>
+      <p class="reveal" style="--d:3">点一个音，App 从你所有的课程里挑出最适合练它的句子：含这个音多的、以前在这句上错过的优先。上一句、下一句和自动跟读都按这个列表走。</p>
+      <p class="try reveal" style="--d:4"><svg class="i"><use href="#i-sparkles"/></svg>点左边的一个音，看看给你挑了哪些句子。</p>
+    </div>
+
+    <div class="feature__demo reveal" style="--d:2">
+      <div class="window" id="review-demo">
+        <div class="window__bar"><span class="lights"><i></i><i></i><i></i></span><span class="window__title">弱项复习</span></div>
+        <div class="pane review">
+          <div class="pane-head"><div><b>弱项复习</b><small>23 次跟读的记录</small></div></div>
+          <div class="review__cols">
+            <div>
+              <p class="col-head">常错的音</p>
+              <div class="sounds" role="listbox" aria-label="常错的音"></div>
+              <p class="col-head">常错的词</p>
+              <div class="wordtags"><span>think ×4</span><span>very ×3</span><span>light ×2</span></div>
+            </div>
+            <div>
+              <p class="col-head review__for"></p>
+              <ol class="drills" aria-live="polite"></ol>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 9 · AI assistant -->
+<section class="feature feature--wide screen alt" id="assistant">
+  <div class="feature__inner">
+    <div class="feature__text">
+      <p class="eyebrow reveal"><svg class="i"><use href="#i-sparkles"/></svg>AI 助手</p>
+      <h2 class="reveal" style="--d:1">让 AI 助手看你的成绩，<br>出一组专项练习</h2>
+      <p class="reveal" style="--d:2">通过 MCP 连接 Claude、ChatGPT、WorkBuddy 的桌面版：在菜单「文件 › 连接 AI 助手…」里点一下就能添加。它能读到你的分数和常错的音，告诉你最该改什么、怎么改；还能直接出一组专项练习，几秒后出现在 OpenMouth 左栏的「专项练习」里。下面选一个助手，点「发送」看看。</p>
+    </div>
+
+    <div class="feature__demo ai reveal" style="--d:2">
+      <div class="window chat" id="chat">
+        <div class="window__bar"><span class="lights"><i></i><i></i><i></i></span><span class="window__title">AI 助手（模拟）</span></div>
+        <div class="chat__pane">
+          <div class="seg seg--full" role="radiogroup" aria-label="选择 AI 助手">
+            <button type="button" role="radio" aria-checked="true" data-bot="Claude">Claude</button>
+            <button type="button" role="radio" aria-checked="false" data-bot="ChatGPT">ChatGPT</button>
+            <button type="button" role="radio" aria-checked="false" data-bot="WorkBuddy">WorkBuddy</button>
+          </div>
+          <div class="chat__log" aria-live="polite"></div>
+          <div class="chat__suggest"></div>
+          <form class="chat__input">
+            <input type="text" readonly value="针对我最弱的两个音做一组专项练习" aria-label="要发送的消息">
+            <button class="send" type="submit" aria-label="发送"><svg class="i"><use href="#i-send"/></svg></button>
+          </form>
+        </div>
+      </div>
+
+      <div class="window app-side" id="sets">
+        <div class="window__bar"><span class="lights"><i></i><i></i><i></i></span><span class="window__title">OpenMouth</span></div>
+        <div class="sets">
+          <aside class="hw-side">
+            <div class="side-item side-item--review"><svg class="i"><use href="#i-target"/></svg>弱项复习<span class="count">23</span></div>
+            <div class="side-head">内置练习</div>
+            <div class="side-item"><b>th 音 /θ/ /ð/</b><small>已练 3/3 句 · 平均 84</small></div>
+            <div class="side-item"><b>l、n、r</b><small>已练 2/2 句 · 平均 79</small></div>
+            <div class="side-head">专项练习</div>
+            <div class="side-new"></div>
+            <div class="side-item side-item--muted"><b>v 和 w：上齿碰不碰下唇</b><small>8 句</small></div>
+          </aside>
+          <div class="set-detail"></div>
+        </div>
+      </div>
+    </div>
+    <p class="fine fine--center reveal">AI 助手能看到你的句子、分数和读错的音，这些会发给你用的 AI 服务；录音不会发送。ChatGPT 只能在桌面版里用。</p>
+  </div>
+</section>
+
+<!-- 10 · your material, your data -->
+<section class="feature feature--wide screen" id="yours">
+  <div class="feature__inner">
+    <div class="feature__text">
+      <p class="eyebrow reveal"><svg class="i"><use href="#i-folder"/></svg>课程和数据</p>
+      <h2 class="reveal" style="--d:1">练你自己的材料，数据留在你的 Mac 上</h2>
+    </div>
+    <div class="trio">
+      <article class="card tile reveal" style="--d:1" id="import">
+        <div class="tile__icon"><svg class="i"><use href="#i-folder"/></svg></div>
+        <h3>导入自己的课程</h3>
+        <p>把放材料的文件夹拖进左栏就行。支持 <code>.lrc</code>、<code>.srt</code> 字幕和 <code>.txt</code> 文本；配上同名音频就能听原声，没有音频就用合成语音示范。中英对照的文本，中文自动当作翻译。</p>
+        <div class="seg seg--small" role="radiogroup" aria-label="文件格式">
+          <button type="button" role="radio" aria-checked="true" data-fmt="txt">.txt</button>
+          <button type="button" role="radio" aria-checked="false" data-fmt="lrc">.lrc + 音频</button>
+          <button type="button" role="radio" aria-checked="false" data-fmt="srt">.srt + 音频</button>
+        </div>
+        <div class="import">
+          <pre class="import__file"></pre>
+          <svg class="i import__arrow"><use href="#i-down"/></svg>
+          <ol class="import__out"></ol>
+        </div>
+        <p class="fine">App 不带任何课程内容，请导入你有权使用的材料。</p>
+      </article>
+
+      <article class="card tile reveal" style="--d:2" id="backup">
+        <div class="tile__icon"><svg class="i"><use href="#i-swap"/></svg></div>
+        <h3>换电脑</h3>
+        <p>「文件 › 导出备份…」存成一个文件，里面有导入的课程（包括音频）、每句的成绩、弱项记录和录音。在新 Mac 上「导入备份…」就都回来了。</p>
+        <div class="move">
+          <div class="mac mac--old"><svg class="i"><use href="#i-laptop"/></svg><small>旧 Mac</small></div>
+          <div class="move__track"><span class="move__file"><svg class="i"><use href="#i-doc"/></svg>OpenMouth 备份.zip</span></div>
+          <div class="mac mac--new"><svg class="i"><use href="#i-laptop"/></svg><small>新 Mac</small></div>
+        </div>
+        <button class="mac-btn mac-btn--accent" type="button" data-backup>导出并导入</button>
+        <p class="move__done" aria-live="polite"></p>
+        <p class="fine">导入只添加、不覆盖：同一句两边都练过的，保留更好的成绩。</p>
+      </article>
+
+      <article class="card tile reveal" style="--d:3" id="privacy">
+        <div class="tile__icon"><svg class="i"><use href="#i-lock"/></svg></div>
+        <h3>打分在本机，录音不上传</h3>
+        <div class="local">
+          <div class="local__mac">
+            <span class="local__label"><svg class="i"><use href="#i-laptop"/></svg>你的 Mac</span>
+            <span class="local__chip"><svg class="i"><use href="#i-mic"/></svg>录音</span>
+            <span class="local__flow" aria-hidden="true"></span>
+            <span class="local__chip"><svg class="i"><use href="#i-cpu"/></svg>打分</span>
+            <span class="local__flow" aria-hidden="true"></span>
+            <span class="local__chip"><svg class="i"><use href="#i-seal"/></svg>结果</span>
+          </div>
+          <div class="local__cloud"><svg class="i"><use href="#i-cloud-off"/></svg>录音不会离开这台 Mac</div>
+        </div>
+        <ul class="points points--small">
+          <li>录音和练习记录只保存在这台 Mac 上</li>
+          <li>只有第一次下载评分数据、以及合成语音需要联网（会把句子文字发给在线语音服务）</li>
+          <li>没有账号，不收集任何数据</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- 11 · accuracy -->
+<section class="feature feature--wide screen alt" id="accuracy">
+  <div class="feature__inner">
+    <div class="feature__text">
+      <p class="eyebrow reveal"><svg class="i"><use href="#i-gauge"/></svg>准确度</p>
+      <h2 class="reveal" style="--d:1">用专家逐音标注的数据检验过</h2>
+      <p class="reveal" style="--d:2">在公开数据集 <a href="https://huggingface.co/datasets/mispeech/speechocean762">speechocean762</a> 的测试集上评测。这个数据集是 250 位普通话母语者朗读的 5,000 句英语，每个音素都有专家标注，正好是 OpenMouth 想帮的人。</p>
+    </div>
+    <div class="stats">
+      <div class="card stat reveal" style="--d:1">
+        <p class="stat__label">读错检测 F1</p>
+        <p class="stat__num" data-count="0.54" data-digits="2">0.54</p>
+        <p class="stat__note">专家标为读错的音，找出来多少、找得准不准，合在一起的分数</p>
+      </div>
+      <div class="card stat reveal" style="--d:2">
+        <p class="stat__label">误报率</p>
+        <p class="stat__num" data-count="1.4" data-digits="1" data-suffix="%">1.4%</p>
+        <p class="stat__note">读对的音被误标成读错的比例，不会动不动就说你错</p>
+        <div class="dotgrid" aria-label="每 500 个读对的音，约 7 个被误标" role="img"></div>
+      </div>
+      <div class="card stat reveal" style="--d:3">
+        <p class="stat__label">句子分和专家评分的相关</p>
+        <p class="stat__num" data-count="0.64" data-digits="2">0.64</p>
+        <p class="stat__note">成年人 <b>0.73</b>。分数高低和专家的判断基本一致</p>
+        <div class="corr" aria-hidden="true">
+          <div class="corr__row"><span>全部</span><i style="--v:.64"></i><b>0.64</b></div>
+          <div class="corr__row"><span>成年人</span><i style="--v:.73"></i><b>0.73</b></div>
+        </div>
+      </div>
+    </div>
+    <p class="fine fine--center reveal">自动打分总会有一点误差。个别被标出来的音，如果你听起来没问题，可以不用在意。美式英语里自然的连读、弱读不算错。</p>
+  </div>
+</section>
+
+<!-- 12 · download -->
+<section class="final screen" id="download">
+  <div class="final__inner">
+    <img class="final__icon reveal" src="icon.png" width="96" height="96" alt="OpenMouth 图标">
+    <h2 class="reveal" style="--d:1">现在就开始练</h2>
+    <p class="lead reveal" style="--d:2">OpenMouth 免费。DMG 经过苹果签名和公证，打开后把 OpenMouth 拖进「应用程序」就能用。</p>
+    <a class="btn btn--primary btn--large reveal" style="--d:3" href="https://github.com/GanymedeNil/openmouth/releases"><svg class="i"><use href="#i-download"/></svg>免费下载</a>
+
+    <div class="card reqs reveal" style="--d:4">
+      <p class="reqs__title">电脑要求</p>
+      <ul>
+        <li><svg class="i"><use href="#i-cpu"/></svg><span><b>Apple 芯片的 Mac</b>（M1 或更新）</span></li>
+        <li><svg class="i"><use href="#i-laptop"/></svg><span><b>macOS 14</b> 或更新</span></li>
+        <li><svg class="i"><use href="#i-disk"/></svg><span>第一次打开要联网下载约 <b>3.6 GB</b> 评分数据，支持断点续传，请留出 5 GB 以上空间</span></li>
+        <li><svg class="i"><use href="#i-memory"/></svg><span>建议 <b>16 GB</b> 内存</span></li>
+      </ul>
+    </div>
+
+    <footer class="footer reveal" style="--d:5">
+      <p class="footer__free">本软件免费，禁止出售。</p>
+      <p>作者 Hongyang Jin · 遇到问题或有建议，欢迎到 <a href="https://github.com/GanymedeNil/openmouth/issues">GitHub Issues</a> 反馈</p>
+      <p class="fine">© 2026 Hongyang Jin。Claude、ChatGPT、WorkBuddy 是各自所有者的商标；speechocean762 数据集归其作者所有。</p>
+    </footer>
+  </div>
+</section>
+
+</main>
+</body>
+</html>
